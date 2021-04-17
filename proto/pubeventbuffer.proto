@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "vivaz.api";
+option java_outer_classname = "PubEventBuffer";
+
+package pubeventbuffer;
+
+service PubEventBuffer{
+  rpc PublicaAgendamento(stream SchedullerRequest) returns (SchedullerReponse);
+}
+
+message Range{
+  int64 init = 1;
+  int64 end= 2;
+}
+
+message SchedullerRequest{
+  Range range = 1;
+  string hash = 2;
+}
+
+message SchedullerReponse{
+  string status =1;
+  string hash = 2;
+}

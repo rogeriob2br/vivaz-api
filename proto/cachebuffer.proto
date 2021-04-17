@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "vivaz.api";
+option java_outer_classname = "CacheBuffer";
+
+package cachebuffer;
+
+service CacheBuffer{
+  rpc ConsultaCache(stream KeysRequest) returns ( stream ValueReponse);
+  rpc GravarCache(stream KeyValueToPut) returns (stream Status);
+}
+message KeysRequest{
+  string key = 1;
+}
+
+message Range{
+  int64 init = 1;
+  int64 end= 2;
+}
+
+message ValueReponse{
+  Range range =1;
+}
+
+message KeyValueToPut{
+    KeysRequest key = 1;
+    Range asvalue =2;
+    string status = 3;
+    string hash = 4;
+}
+
+message Status{
+  string status = 3;
+  string hash = 4;
+}

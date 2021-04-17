@@ -46,7 +46,6 @@ impl RedisConfig {
     }
 }
 
-
 pub struct LogConfig {
     pub log_level: String,
     pub log_output: String,

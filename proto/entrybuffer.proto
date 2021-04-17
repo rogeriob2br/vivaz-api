@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "vivaz.api";
+option java_outer_classname = "EntryBufferProto";
+
+package entrybuffer;
+
+service EntryBuffer{
+  rpc ListaHorariosDisponiveis(RangeRequest) returns ( stream RangeReponse);
+  rpc AgendarHorario(stream SchedullerRequest) returns ( stream SchedullerReponse);
+}
+
+message RangeRequest{
+  string mes = 1;
+  string ano = 2;
+}
+
+message Range{
+    int64 init = 1;
+    int64 end= 2;
+}
+
+message RangeReponse{
+  Range range = 1;
+}
+
+message SchedullerRequest{
+  Range range = 1;
+  string hash = 2;
+}
+
+message SchedullerReponse{
+  string status = 1;
+  string hash = 2;
+}
