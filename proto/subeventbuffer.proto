@@ -7,7 +7,7 @@ option java_outer_classname = "SubEventBuffer";
 package subeventbuffer;
 
 service SubEventBuffer{
-  rpc AtualizaAgendamento(stream KeyValueToPut) returns (stream Status);
+  rpc AtualizaAgendamento(stream KeyValueToPut) returns (stream EventStatus);
 }
 
 message KeysRequest{
@@ -26,7 +26,7 @@ message Range{
   int64 end= 2;
 }
 
-message Status{
+message EventStatus{
   string status = 3;
   string hash = 4;
 }

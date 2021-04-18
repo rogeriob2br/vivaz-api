@@ -7,30 +7,25 @@ option java_outer_classname = "CacheBuffer";
 package cachebuffer;
 
 service CacheBuffer{
-  rpc ConsultaCache(stream KeysRequest) returns ( stream ValueReponse);
-  rpc GravarCache(stream KeyValueToPut) returns (stream Status);
+  rpc ConsultaCache(KeysRequest) returns ( stream ValueReponse);
+  rpc GravarCache(KeyValueToPut) returns (CreationStatus);
 }
 message KeysRequest{
   string key = 1;
 }
 
-message Range{
+message ValueReponse{
   int64 init = 1;
   int64 end= 2;
 }
 
-message ValueReponse{
-  Range range =1;
-}
-
 message KeyValueToPut{
-    KeysRequest key = 1;
-    Range asvalue =2;
-    string status = 3;
-    string hash = 4;
+    int64 init = 2;
+    int64 end= 3;
+    string hash = 5;
 }
 
-message Status{
+message CreationStatus{
   string status = 3;
   string hash = 4;
 }
